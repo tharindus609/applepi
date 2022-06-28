@@ -1,0 +1,8 @@
+---
+- name: Provision Rasphbery Pi
+  hosts: all
+
+  roles:
+    - common
+    - docker
+    - portainer

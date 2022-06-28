@@ -1,0 +1,8 @@
+---
+- name: Update caches, perform a full upgrade and a little housekeep
+  become: yes
+  apt:
+    update_cache: yes
+    upgrade: full
+    autoclean:  yes
+    autoremove: yes
