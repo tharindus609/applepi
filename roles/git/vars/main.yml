@@ -1,0 +1,6 @@
+---
+common_git_global_configs:
+  - config: user.email
+    value: "tharindus609@gmail.com"
+  - config: user.name
+    value: tharindus609

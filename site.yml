@@ -4,6 +4,8 @@
 
   roles:
     - common
+    - fish
+    - git
     - samba
-    # - docker
-    # - portainer
+    - docker
+    - portainer

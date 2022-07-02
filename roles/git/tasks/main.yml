@@ -1,0 +1,13 @@
+---
+- name: Install required package
+  become: true
+  apt:
+    name: git
+    state: present
+
+- name: setup global git configs
+  git_config:
+    name: "{{ item.config }}"
+    scope: global
+    value: "{{ item.value }}"
+  loop: "{{ common_git_global_configs }}"
