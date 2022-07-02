@@ -22,6 +22,13 @@
     dest: .bash_aliases
     mode: 0644
 
+- name: setup global git configs
+  git_config:
+    name: "{{ item.config }}"
+    scope: global
+    value: "{{ item.value }}"
+  loop: "{{ common_git_global_configs }}"
+
 - name: Mount external drives
   become: true
   mount:
