@@ -1,8 +1,34 @@
 ---
 - name: Update caches, perform a full upgrade and a little housekeep
-  become: yes
+  become: true
   apt:
     update_cache: yes
     upgrade: full
     autoclean:  yes
     autoremove: yes
+
+- name: Install required package
+  become: true
+  apt:
+    name:
+      - git
+      - python3-pip
+      - vim
+    state: present
+
+- name: Setup bash aliases
+  copy:
+    src: files/.bash_aliases
+    dest: .bash_aliases
+    mode: 0644
+
+- name: Mount external drives
+  become: true
+  mount:
+    path: "{{ item.mount_path }}"
+    src: "PARTUUID={{ item.partuuid }}"
+    fstype: auto
+    opts: "defaults,nofail,dmask=0022,fmask=0137,gid={{ ansible_user_gid }},uid={{ ansible_user_uid }}"
+    state: mounted
+    backup: yes
+  with_items: "{{ ext_disk_map }}"

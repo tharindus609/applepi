@@ -1,0 +1,4 @@
+---
+ext_disk_map:
+  - partuuid: 5a74a66a-2403-4a17-b50e-a6ec9c3570b3
+    mount_path: /media/share/tv_shows

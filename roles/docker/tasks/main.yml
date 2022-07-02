@@ -1,13 +1,13 @@
 ---
 - name: Check if docker is installed
-  command: docker --version
+  command: which docker
   register: docker_installed
   changed_when: false
   failed_when: false
 
 - name: Install docker
   shell: curl -sSL https://get.docker.com | sh
-  when: docker_installed.failed
+  when: docker_installed.rc == 1
 
 - name: Check docker services status
   service:
@@ -21,7 +21,7 @@
     state: latest
 
 - name: "Add {{ ansible_user_id }} to docker group"
-  become: yes
+  become: true
   user:
     name: "{{ ansible_user_id }}"
     groups: docker
