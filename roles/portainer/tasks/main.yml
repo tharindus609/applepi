@@ -1,16 +1,14 @@
 ---
-- name: Create portainer data volume
-  docker_volume:
-    name: portainer_data
+- name: Checkout portainer stack
+  git:
+    repo: https://gitlab.com/atlas-container-stacks/portainer.git
+    dest: "{{ ansible_user_dir }}/repos/portainer"
 
-- name: Deploy portainer on 9443
-  docker_container:
-    image: portainer/portainer-ce:latest
-    name: portainer
-    state: started
-    restart_policy: always
-    published_ports:
-      - 9443:9443
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
+- name: Start portainer stack
+  docker_compose:
+    project_src: "{{ ansible_user_dir }}/repos/portainer"
+  register: portainer_stack_output
+
+- name: Portainer stack creation output
+  debug:
+    var: portainer_stack_output
