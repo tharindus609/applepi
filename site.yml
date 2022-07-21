@@ -9,3 +9,5 @@
     - samba
     - docker
     - portainer
+    - luthor
+    - kubernetes

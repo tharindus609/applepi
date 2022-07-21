@@ -13,6 +13,7 @@
     name:
       - python3-pip
       - vim
+      - dnsutils
     state: present
 
 - name: Setup bash aliases

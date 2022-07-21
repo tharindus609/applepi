@@ -1,0 +1,14 @@
+---
+- name: Checkout luthor stack
+  git:
+    repo: https://gitlab.com/atlas-container-stacks/luthor.git
+    dest: "{{ ansible_user_dir }}/repos/luthor"
+
+- name: Start luthor stack
+  docker_compose:
+    project_src: "{{ ansible_user_dir }}/repos/luthor"
+  register: luthor_stack_output
+
+- name: luthor stack creation output
+  debug:
+    var: luthor_stack_output
