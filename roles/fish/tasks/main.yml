@@ -23,3 +23,8 @@
   user:
     name: "{{ ansible_user_id }}"
     shell: /usr/bin/fish
+
+- name: Add fish config to ~/.config/fish/config.fish
+  template:
+    src:  config.fish.j2
+    dest: "{{ ansible_user_dir }}/.config/fish/config.fish"

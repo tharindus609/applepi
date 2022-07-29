@@ -14,13 +14,8 @@
       - python3-pip
       - vim
       - dnsutils
+      - libnfs-utils
     state: present
-
-- name: Setup bash aliases
-  copy:
-    src: files/.bash_aliases
-    dest: .bash_aliases
-    mode: 0644
 
 - name: Mount external drives
   become: true
