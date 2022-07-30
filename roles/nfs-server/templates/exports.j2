@@ -13,4 +13,8 @@
 # /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)
 #
 
-/rust/nfs/container-vols   *(rw,async,no_subtree_check)
+#no_root_squash added to support container volumes
+
+{% for nfs_share in nfs_shares %}
+{{ nfs_share.path}} {{ nfs_share.options}}
+{% endfor %}

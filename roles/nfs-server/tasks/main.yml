@@ -17,14 +17,15 @@
     group: "{{ ansible_user_id }}"
   with_items: "{{ nfs_shares }}"
 
-- name: Copy exports config
+- name: Set /etc/exports configs
   become: true
-  copy:
-    src: exports
+  template:
+    src:  exports.j2
     dest: /etc/exports
-  notify: reload_exports
+  notify:
+    - reload_exports
 
-- name: Ensure nfs service is running
+- name: Check nfs service status
   become: true
   service:
     name: nfs-server
