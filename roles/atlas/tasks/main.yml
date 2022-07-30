@@ -1,0 +1,11 @@
+---
+- name: Checkout stacks
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ atlas_stacks }}"
+
+- name: Starting stacks
+  docker_compose:
+    project_src: "{{ item.dest }}"
+  with_items: "{{ atlas_stacks }}"

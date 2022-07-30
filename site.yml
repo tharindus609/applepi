@@ -3,11 +3,11 @@
   hosts: all
 
   roles:
-    # - common
+    - common
     - fish
-    # - git
-    # - samba
-    # - docker
-    # - portainer
-    # - luthor
-    # - kubernetes
+    - git
+    - nfs-server
+    - samba
+    - docker
+    - atlas
+    - kubernetes

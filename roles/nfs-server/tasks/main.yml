@@ -1,0 +1,32 @@
+---
+- name: Install required packages
+  become: true
+  apt:
+    name:
+      - nfs-common
+      - nfs-kernel-server
+    state: present
+
+- name: Setup NFS shares
+  become: true
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+  with_items: "{{ nfs_shares }}"
+
+- name: Copy exports config
+  become: true
+  copy:
+    src: exports
+    dest: /etc/exports
+  notify: reload_exports
+
+- name: Ensure nfs service is running
+  become: true
+  service:
+    name: nfs-server
+    state: started
+    enabled: yes

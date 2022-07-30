@@ -1,0 +1,10 @@
+---
+atlas_stacks:
+  - repo: https://gitlab.com/atlas-container-stacks/portainer.git
+    dest: "{{ ansible_user_dir }}/src/atlas-container-stacks/portainer"
+  
+  - repo: https://gitlab.com/atlas-container-stacks/luthor.git
+    dest: "{{ ansible_user_dir }}/src/atlas-container-stacks/luthor"
+  
+  - repo: https://gitlab.com/atlas-container-stacks/nginx.git
+    dest: "{{ ansible_user_dir }}/src/atlas-container-stacks/nginx"

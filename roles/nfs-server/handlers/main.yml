@@ -1,0 +1,4 @@
+---
+- name: reload_exports
+  become: true
+  command: "exportfs -a"

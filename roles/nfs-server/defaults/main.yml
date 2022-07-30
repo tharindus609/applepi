@@ -1,0 +1,5 @@
+---
+nfs_shares:
+  - name: container-vols
+    path: /rust/nfs/container-vols
+    options: "*(rw,async,no_subtree_check)"
