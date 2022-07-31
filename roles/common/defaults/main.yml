@@ -1,6 +1,6 @@
 ---
 ext_disk_map:
   - partuuid: 5a74a66a-2403-4a17-b50e-a6ec9c3570b3
-    mount_path: /media/share/tv_shows
+    mount_path: /rust/media/external-drive/tv_shows
   - partuuid: 3f666243-726b-4463-812f-58da8ae15aa0
-    mount_path: /media/share/movies
+    mount_path: /rust/media/external-drive/movies

@@ -1,4 +1,4 @@
 ---
 samba_shares:
   - name: mediashare
-    path: /media/share
+    path: /rust/media
