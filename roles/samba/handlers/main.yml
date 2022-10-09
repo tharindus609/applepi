@@ -1,5 +1,5 @@
 ---
-- name: restart_samba_services
+- name: Restart_samba_services
   become: true
   service:
     name: smbd

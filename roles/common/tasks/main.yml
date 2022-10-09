@@ -1,15 +1,15 @@
 ---
 - name: Update caches, perform a full upgrade and a little housekeep
   become: true
-  apt:
-    update_cache: yes
+  ansible.builtin.apt:
+    update_cache: true
     upgrade: full
-    autoclean:  yes
-    autoremove: yes
+    autoclean: true
+    autoremove: true
 
 - name: Install required package
   become: true
-  apt:
+  ansible.builtin.apt:
     name:
       - python3-pip
       - vim
@@ -25,5 +25,5 @@
     fstype: auto
     opts: "defaults,nofail,dmask=0022,fmask=0137,gid={{ ansible_user_gid }},uid={{ ansible_user_uid }}"
     state: mounted
-    backup: yes
+    backup: true
   with_items: "{{ ext_disk_map }}"

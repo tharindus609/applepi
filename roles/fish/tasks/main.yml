@@ -1,30 +1,31 @@
 ---
 - name: Setup repo GPG keyring
   become: true
-  shell: |
+  ansible.builtin.shell: |
     curl -fsSL https://download.opensuse.org/repositories/shells:fish/Debian_11/Release.key | gpg --dearmor | sudo tee /etc/apt/keyrings/fish_shell.gpg
 
 - name: Add debian fish repo
   become: true
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: deb [signed-by=/etc/apt/keyrings/fish_shell.gpg] http://download.opensuse.org/repositories/shells:fish/Debian_11 /
     filename: fish_shell
     state: present
 
 - name: Install fish
   become: true
-  apt:
+  ansible.builtin.apt:
+    update_cache: true
     name: fish
     state: present
-    update_cache: yes
 
-- name: "set fish as default shell for {{ ansible_user_id }}"
+- name: "Set fish as default shell for {{ ansible_user_id }}"
   become: true
-  user:
+  ansible.builtin.user:
     name: "{{ ansible_user_id }}"
     shell: /usr/bin/fish
 
 - name: Add fish config to ~/.config/fish/config.fish
-  template:
-    src:  config.fish.j2
+  ansible.builtin.template:
+    src: config.fish.j2
     dest: "{{ ansible_user_dir }}/.config/fish/config.fish"
+    mode: '0644'

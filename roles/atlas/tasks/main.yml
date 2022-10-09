@@ -1,8 +1,9 @@
 ---
 - name: Checkout stacks
-  git:
+  ansible.builtin.git:
     repo: "{{ item.repo }}"
     dest: "{{ item.dest }}"
+    version: main
   with_items: "{{ atlas_stacks }}"
 
 - name: Starting stacks
