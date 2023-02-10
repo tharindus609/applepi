@@ -3,10 +3,10 @@
   hosts: all
 
   roles:
-    # - common
+    - common
     - fish
-    # - git
+    - git
     # - nfs-server
-    # - samba
-    # - docker
-    # - atlas
+    - samba
+    - docker
+    - atlas
