@@ -31,3 +31,5 @@
 
 - name: Reset ansible connection
   ansible.builtin.meta: reset_connection
+
+# todo: cgroup_enable=memory cgroup_memory=1 shoul be added to /boot/cmdline.txt to enable memory monitoring
