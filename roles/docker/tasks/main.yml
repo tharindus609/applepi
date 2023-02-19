@@ -29,7 +29,16 @@
     groups: docker
     append: true
 
+- name: Enable ipv6 netwroking for docker
+  become: true
+  ansible.builtin.copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+    mode: '0600'
+  notify:
+    - reload_docker_service
+
 - name: Reset ansible connection
   ansible.builtin.meta: reset_connection
 
-# todo: cgroup_enable=memory cgroup_memory=1 shoul be added to /boot/cmdline.txt to enable memory monitoring
+# TODO: cgroup_enable=memory cgroup_memory=1 shoul be added to /boot/cmdline.txt to enable memory monitoring
